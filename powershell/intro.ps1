@@ -25,8 +25,8 @@ $dictionary = @{
     person = 'World'
 }
 
-try{
+try {
     return [Nustache.Core.Render]::StringToString($InputString, $dictionary)
-} catch [Exception] {
+} catch {
     $_.Exception.Message
 }
