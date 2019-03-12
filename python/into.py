@@ -1,5 +1,5 @@
 import pystache
 
-str = pystache.render('Hi {{person}}!', {'person': 'Mom'})
+str = pystache.render('Hello {{person}}!', {'person': 'World'})
 
 print(str)
