@@ -25,3 +25,4 @@ This project is licensed under the GNU3 License - see the [LICENSE.md](LICENSE.m
 ## Acknowledgments
 
 *The powershell script template comes from https://gist.github.com/9to5IT/9620683
+*The dotNet mustache render comes from https://github.com/jdiamond/Nustache
