@@ -50,9 +50,29 @@ Describe 'Get-RenderedMustache' {
             @"
         }
     }
-    
-    Context 'Lists' {
 
-        
-    }   
+    Context 'Lists' {
+        It 'basic list' {
+            $inputString = "@
+            {{#repo}}
+                <b>{{name}}</b>
+            {{/repo}}
+            @"
+
+            $dictionary = @{
+                repo = @(
+                    @{name = "John"},
+                    @{name = "Toby"},
+                    @{name = "Jane"}
+                )
+            }
+
+            Get-RenderedMustache -inputString $inputString -dictionary $dictionary |
+            Should be "@
+                <b>John</b>
+                <b>Toby</b>
+                <b>Jane</b>
+            @"
+        }
+    }
 }
