@@ -32,7 +32,8 @@ function Get-RenderedMustache {
 
     process {
         try {
-            return [Nustache.Core.Render]::StringToString($inputString, $dictionary)
+            #not to sure what to put here
+            return [Stubble.Core.Renderers]::render($inputString, $dictionary, $null)
         } catch {
             $_.Exception.Message
         }
