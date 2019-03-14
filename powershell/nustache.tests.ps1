@@ -5,25 +5,25 @@ Describe 'Get-RenderedMustache' {
     Context 'variables' {
 
         It 'basic render' {
-            $inputString = 'Hello {{person}}!'
-            $dictionary = @{
+            $template = 'Hello {{person}}!'
+            $hash = @{
                 person = 'World'
             }
-            Get-RenderedMustache -inputString $inputString -dictionary $dictionary |
+            Get-RenderedMustache -template $template -hash $hash |
             Should be 'Hello World!'
         }
 
         It 'complex render' {
-            $inputString = "@
+            $template = "@
                 Hello {{person}}, are you having a good {{expression}}?
             @"
 
-            $dictionary = @{
+            $hash = @{
                 person = 'John'
                 expression = 'day'
             }
 
-            Get-RenderedMustache -inputString $inputString -dictionary $dictionary |
+            Get-RenderedMustache -template $template -hash $hash |
             Should be "@
                 Hello John, are you having a good day?
             @"
@@ -33,18 +33,18 @@ Describe 'Get-RenderedMustache' {
     Context 'sections' {
 
         It 'basic section' {
-            $inputString = "@
+            $template = "@
                 Shown.
                 {{#person}}
                     Never shown!
                 {{/person}}
             @"
 
-            $dictionary = @{
+            $hash = @{
                 person = $false
             }
 
-            Get-RenderedMustache -inputString $inputString -dictionary $dictionary |
+            Get-RenderedMustache -template $template -hash $hash |
             Should be "@
                 Shown.
             @"
@@ -53,13 +53,13 @@ Describe 'Get-RenderedMustache' {
 
     Context 'Lists' {
         It 'basic list' {
-            $inputString = "@
+            $template = "@
             {{#repo}}
                 <b>{{name}}</b>
             {{/repo}}
             @"
 
-            $dictionary = @{
+            $hash = @{
                 repo = @(
                     @{name = "John"},
                     @{name = "Toby"},
@@ -67,7 +67,7 @@ Describe 'Get-RenderedMustache' {
                 )
             }
 
-            Get-RenderedMustache -inputString $inputString -dictionary $dictionary |
+            Get-RenderedMustache -template $template -hash $hash |
             Should be "@
                 <b>John</b>
                 <b>Toby</b>

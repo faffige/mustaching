@@ -20,10 +20,10 @@ function Get-RenderedMustache {
     param (
         # Parameter help description
         [Parameter(Mandatory=$true,Position=1)]
-        [string]$inputString,
+        [string]$template,
         # Parameter help description
         [Parameter(Mandatory=$true,Position=1)]
-        [hashtable]$dictionary
+        [hashtable]$hash
     )
 
     begin {
@@ -32,7 +32,7 @@ function Get-RenderedMustache {
 
     process {
         try {
-            return [Nustache.Core.Render]::StringToString($inputString, $dictionary)
+            return [Nustache.Core.Render]::StringToString($template, $hash)
         } catch {
             $_.Exception.Message
         }

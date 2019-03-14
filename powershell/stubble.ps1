@@ -20,10 +20,10 @@ function Get-RenderedMustache {
     param (
         # Parameter help description
         [Parameter(Mandatory=$true,Position=1)]
-        [string]$inputString,
+        [string]$template,
         # Parameter help description
         [Parameter(Mandatory=$true,Position=1)]
-        [hashtable]$dictionary
+        [hashtable]$hash
     )
 
     begin {
@@ -33,7 +33,7 @@ function Get-RenderedMustache {
     process {
         try {
             #not to sure what to put here
-            return [Stubble.Core.Renderers]::render($inputString, $dictionary, $null)
+            return [Stubble.Core.Renderers]::render($template, $hash, $null)
         } catch {
             $_.Exception.Message
         }
