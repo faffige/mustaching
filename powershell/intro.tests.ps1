@@ -32,7 +32,7 @@ Describe 'Get-RenderedMustache' {
 
     Context 'sections' {
 
-        It 'basic list' {
+        It 'basic section' {
             $inputString = "@
                 Shown.
                 {{#person}}
