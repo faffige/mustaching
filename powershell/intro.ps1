@@ -25,11 +25,11 @@ function Get-RenderedMustache {
         [Parameter(Mandatory=$true,Position=1)]
         [hashtable]$dictionary
     )
-    
+
     begin {
         [Reflection.Assembly]::LoadFile("$PSScriptroot/bin/Nustache.Core.dll") | Out-Null
     }
-    
+
     process {
         try {
             return [Nustache.Core.Render]::StringToString($inputString, $dictionary)
@@ -37,7 +37,7 @@ function Get-RenderedMustache {
             $_.Exception.Message
         }
     }
-    
+
     end {
 
     }
