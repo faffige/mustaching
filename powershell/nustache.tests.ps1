@@ -1,4 +1,4 @@
-. $PSScriptRoot\intro.ps1
+. $PSScriptRoot\nustache.ps1
 
 Describe 'Get-RenderedMustache' {
 
