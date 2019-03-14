@@ -11,22 +11,34 @@
         Version:        1.0
         Author:         faffige
         Creation Date:  12 MAR 19
-    
     .EXAMPLE
         <Example goes here. Repeat this attribute for more than one example>
 #>
 
-$path = $pwd.Path
+function Get-RenderedMustache {
+    [CmdletBinding()]
+    param (
+        # Parameter help description
+        [Parameter(Mandatory=$true,Position=1)]
+        [string]$inputString,
+        # Parameter help description
+        [Parameter(Mandatory=$true,Position=1)]
+        [hashtable]$dictionary
+    )
+    
+    begin {
+        [Reflection.Assembly]::LoadFile("$PSScriptroot/bin/Nustache.Core.dll") | Out-Null
+    }
+    
+    process {
+        try {
+            return [Nustache.Core.Render]::StringToString($inputString, $dictionary)
+        } catch {
+            $_.Exception.Message
+        }
+    }
+    
+    end {
 
-[Reflection.Assembly]::LoadFile("$path/powershell/bin/Nustache.Core.dll") | Out-Null
-
-$InputString = 'Hello {{person}}!'
-$dictionary = @{
-    person = 'World'
-}
-
-try {
-    return [Nustache.Core.Render]::StringToString($InputString, $dictionary)
-} catch {
-    $_.Exception.Message
+    }
 }
