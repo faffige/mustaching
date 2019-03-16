@@ -1,18 +1,10 @@
-# Project Title
+# Mustaching
 
-This project is for using mustache with various languages
+This project is for using mustache with various languages. PowerShell is my main language and am stating to learn python - hence the multitude of mistakes.
 
 ## Getting Started
 
 TBA
-
-### Prerequisites
-
-TBA
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
 
 ## License
 
